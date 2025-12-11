@@ -693,7 +693,7 @@ body {
     .p9-krishna-wrap {
         left: 10%;
         transform: translateX(-50%);
-        top: -40px;          /* was 20px — now moved UP */
+        top: -80px;          /* was 20px — now moved UP */
         width: 150px;
         z-index: 30;
     }
