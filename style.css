@@ -703,44 +703,66 @@ body {
         transform: translateY(-20px) scale(0.92);
     }
 
-    /* Move cake UP so there isn’t empty space */
-    .p9-cake {
-        width: 72vw;              /* Smaller, clean look */
-        max-width: 260px;         /* Prevent it from growing too big */
-        margin: -110px auto 10px; /* Lift cake UP so candle touches */
-        height: 95px;             /* Slightly reduced height */
-        margin-left: 10vw;   /* ← SHIFT RIGHT */
-    }
-    .p9-cake-top {
-        height: 38px;
-        top: -18px;
-    }
-    .p9-cake-body {
-        height: 60px;
-        top: 22px;
-    }
-    .p9-candle {
-        top: -54px;               /* Was -90px — now closer to cake */
-        left:55%;
-}
-    .p9-flame {
-        top: -14px;
-        left:55%;
+   /* -------------------------
+   MOBILE: cake + candle alignment (stable)
+   ------------------------- */
+
+.p9-cake {
+    width: 72vw;
+    max-width: 260px;
+    margin: -110px auto 10px;   /* keep centered by default */
+    height: 95px;
+    position: relative;         /* make candle position relative to cake */
+    left: 8vw;                  /* gently shift the whole cake block right */
+    transform: translateX(0);   /* explicit - no translate from elsewhere */
 }
 
-    /* Adjust page spacing so text doesn’t get covered */
-    #page9 .page-content {
-        padding-top: 120px;   /* was 160px — FIXED */
-    }
+/* slightly tweak cake parts to match new size */
+.p9-cake-top {
+    height: 38px;
+    top: -18px;
+}
 
-    /* Wish input box spacing */
-    .p9-wish-wrap {
-        margin-top: 20px;
-    }
+.p9-cake-body {
+    height: 60px;
+    top: 22px;
+}
 
-    #p9-wish-input { 
-        width: 70vw; 
-    }
+/* candle positioned relative to the cake container,
+   so left:50% will be centered on the cake */
+.p9-candle {
+    position: absolute;   /* ensure it's inside the cake */
+    left: 50%;
+    transform: translateX(-50%); /* center on cake */
+    top: -54px;           /* final vertical position on mobile */
+    width: 14px;
+    height: 60px;
+    z-index: 30;
+}
+
+/* flame follows the candle */
+.p9-flame {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -14px;
+    z-index: 40;
+}
+
+/* ensure wish input is centered under the cake group */
+.p9-wish-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* input width that lines up with cake */
+#p9-wish-input {
+    width: 64vw;    /* slightly narrower than cake so button fits */
+    max-width: 220px;
+}
+
 
     /* Make bubble centered below Krishna */
     .p9-dialogue-bubble {
