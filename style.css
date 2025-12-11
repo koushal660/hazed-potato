@@ -732,7 +732,7 @@ body {
    so left:50% will be centered on the cake */
 .p9-candle {
     position: absolute;   /* ensure it's inside the cake */
-    left: 50%;
+    left: 58%;
     transform: translateX(-50%); /* center on cake */
     top: -54px;           /* final vertical position on mobile */
     width: 14px;
@@ -743,7 +743,7 @@ body {
 /* flame follows the candle */
 .p9-flame {
     position: absolute;
-    left: 50%;
+    left: 58%;
     transform: translateX(-50%);
     top: -14px;
     z-index: 40;
