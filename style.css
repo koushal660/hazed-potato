@@ -719,10 +719,10 @@ body {
         top: 22px;
     }
     .p9-candle {
-        top: -68px;               /* Was -90px — now closer to cake */
+        top: -60px;               /* Was -90px — now closer to cake */
     }
     .p9-flame {
-        top: -16px;
+        top: -12px;
     }
 
     /* Adjust page spacing so text doesn’t get covered */
