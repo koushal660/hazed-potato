@@ -713,7 +713,7 @@ body {
     margin: -110px auto 10px;   /* keep centered by default */
     height: 95px;
     position: relative;         /* make candle position relative to cake */
-    left: 8vw;                  /* gently shift the whole cake block right */
+    left: 10vw;                  /* gently shift the whole cake block right */
     transform: translateX(0);   /* explicit - no translate from elsewhere */
 }
 
@@ -732,7 +732,7 @@ body {
    so left:50% will be centered on the cake */
 .p9-candle {
     position: absolute;   /* ensure it's inside the cake */
-    left: 58%;
+    left: 62%;
     transform: translateX(-50%); /* center on cake */
     top: -54px;           /* final vertical position on mobile */
     width: 14px;
@@ -743,7 +743,7 @@ body {
 /* flame follows the candle */
 .p9-flame {
     position: absolute;
-    left: 58%;
+    left: 62%;
     transform: translateX(-50%);
     top: -14px;
     z-index: 40;
