@@ -689,33 +689,48 @@ body {
 --------------------------- */
 @media (max-width: 820px) {
 
+    /* Move Krishna UP and center */
     .p9-krishna-wrap {
         left: 50%;
         transform: translateX(-50%);
-        top: 20px;
+        top: -40px;          /* was 20px — now moved UP */
         width: 150px;
+        z-index: 30;
     }
 
     #p9-krishna-img {
         width: 150px;
-        transform: translateY(-10px) scale(0.9);  /* ← NEW */
+        transform: translateY(-20px) scale(0.92);
     }
+
+    /* Move cake UP so there isn’t empty space */
+    .p9-cake {
+        width: 86vw;
+        margin: -80px auto 20px;   /* was -150px — FIXED */
+    }
+
+    /* Adjust page spacing so text doesn’t get covered */
     #page9 .page-content {
-        padding-top: 260px;   /* ← NEW */
+        padding-top: 120px;   /* was 160px — FIXED */
     }
+
+    /* Wish input box spacing */
     .p9-wish-wrap {
-        margin-top: 30px;     /* ← NEW */
+        margin-top: 20px;
     }
 
-    #p9-wish-input { width: 70vw; }
-    .p9-cake { width: 86vw; }
+    #p9-wish-input { 
+        width: 70vw; 
+    }
 
+    /* Make bubble centered below Krishna */
     .p9-dialogue-bubble {
         left: 50%;
-        top: 160px;
+        top: 140px;
         transform: translateX(-50%);
     }
 }
+
 /* --------------------------------------------------
    GLOBAL BACK BUTTON STYLE
 -------------------------------------------------- */
