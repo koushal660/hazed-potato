@@ -705,8 +705,24 @@ body {
 
     /* Move cake UP so there isn’t empty space */
     .p9-cake {
-        width: 86vw;
-        margin: -80px auto 20px;   /* was -150px — FIXED */
+        width: 72vw;              /* Smaller, clean look */
+        max-width: 260px;         /* Prevent it from growing too big */
+        margin: -110px auto 10px; /* Lift cake UP so candle touches */
+        height: 95px;             /* Slightly reduced height */
+    }
+    .p9-cake-top {
+        height: 38px;
+        top: -18px;
+    }
+    .p9-cake-body {
+        height: 60px;
+        top: 22px;
+    }
+    .p9-candle {
+        top: -68px;               /* Was -90px — now closer to cake */
+    }
+    .p9-flame {
+        top: -16px;
     }
 
     /* Adjust page spacing so text doesn’t get covered */
