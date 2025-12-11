@@ -691,7 +691,7 @@ body {
 
     /* Move Krishna UP and center */
     .p9-krishna-wrap {
-        left: 10%;
+        left: 14%;
         transform: translateX(-50%);
         top: -80px;          /* was 20px — now moved UP */
         width: 150px;
