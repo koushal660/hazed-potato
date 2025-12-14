@@ -80,9 +80,13 @@ body {
 }
 
 .cursor {
-    border-right: 3px solid #333;
+    display: inline-block;
+    width: 0;
+    border-right: 2px solid #333;
+    margin-left: 2px;
     animation: blink 0.7s steps(1) infinite;
 }
+
 
 @keyframes blink {
     50% {
