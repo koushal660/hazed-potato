@@ -121,48 +121,43 @@ function startPage0() {
       PAGE 1 — Multi-line Typing (with pause + joke)
 ------------------------------------------------------------------ */
 function startTypingEffectPage1() {
-    const text = [
+    const lines = [
         "Wait… before you panic —",
         "I'm not confessing to anything here. 😳",
         "Or am I…"
     ];
 
-    const element = document.getElementById("typewriter");
+    const el = document.getElementById("typewriter");
     const nextBtn = document.getElementById("nextBtnPage1");
-    if (!element || !nextBtn) return;
+    if (!el || !nextBtn) return;
 
-    element.innerHTML = "";
+    el.innerHTML = "";
     nextBtn.style.display = "none";
 
     let line = 0;
-    let index = 0;
+    let char = 0;
+    let output = "";
 
     function type() {
-        if (line < text.length) {
-            if (index < text[line].length) {
-                element.innerHTML =
-                    element.innerHTML.replace(/<span class='cursor'><\/span>/g, "") +
-                    text[line].charAt(index) +
-                    "<span class='cursor'></span>";
-                index++;
+        if (line < lines.length) {
+            if (char < lines[line].length) {
+                el.innerHTML = output + lines[line].slice(0, char + 1) + "<span class='cursor'></span>";
+                char++;
                 setTimeout(type, 70);
             } else {
-                element.innerHTML =
-                    element.innerHTML.replace(/<span class='cursor'><\/span>/g, "") +
-                    "<br>";
+                output += lines[line] + "<br>";
                 line++;
-                index = 0;
-                setTimeout(type, 520);
+                char = 0;
+                setTimeout(type, 500);
             }
         } else {
-            // Remove cursor
-            element.innerHTML = element.innerHTML.replace(/<span class='cursor'><\/span>/g, "");
+            // remove cursor
+            el.innerHTML = output;
 
-            // ⏳ Small pause after "Or am I..."
+            // pause → joke
             setTimeout(() => {
-                element.innerHTML += "<br>Just kidding,RELAX!! 😄";
+                el.innerHTML += "<br>Just kidding, RELAX!! 😄";
 
-                // ⏳ Pause before showing Next button
                 setTimeout(() => {
                     nextBtn.style.display = "inline-block";
                 }, 600);
@@ -173,6 +168,7 @@ function startTypingEffectPage1() {
 
     type();
 }
+
 
 
 /* ------------------------------------------------------------------
