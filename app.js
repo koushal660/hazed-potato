@@ -118,13 +118,13 @@ function startPage0() {
 }
 
 /* ------------------------------------------------------------------
-      PAGE 1 — Multi-line Typing
+      PAGE 1 — Multi-line Typing (with pause + joke)
 ------------------------------------------------------------------ */
 function startTypingEffectPage1() {
     const text = [
         "Wait… before you panic —",
         "I'm not confessing to anything here. 😳",
-        "(Or am I…? Just kidding, RELAX!)"
+        "Or am I…"
     ];
 
     const element = document.getElementById("typewriter");
@@ -141,24 +141,39 @@ function startTypingEffectPage1() {
         if (line < text.length) {
             if (index < text[line].length) {
                 element.innerHTML =
-                    text[line].substring(0, index + 1) +
+                    element.innerHTML.replace(/<span class='cursor'><\/span>/g, "") +
+                    text[line].charAt(index) +
                     "<span class='cursor'></span>";
                 index++;
                 setTimeout(type, 70);
             } else {
-                element.innerHTML += "<br>";
+                element.innerHTML =
+                    element.innerHTML.replace(/<span class='cursor'><\/span>/g, "") +
+                    "<br>";
                 line++;
                 index = 0;
                 setTimeout(type, 520);
             }
         } else {
-            // Remove cursor for clean final text
+            // Remove cursor
             element.innerHTML = element.innerHTML.replace(/<span class='cursor'><\/span>/g, "");
-            nextBtn.style.display = "inline-block";
+
+            // ⏳ Small pause after "Or am I..."
+            setTimeout(() => {
+                element.innerHTML += "<br>Just kidding,RELAX!! 😄";
+
+                // ⏳ Pause before showing Next button
+                setTimeout(() => {
+                    nextBtn.style.display = "inline-block";
+                }, 600);
+
+            }, 700);
         }
     }
+
     type();
 }
+
 
 /* ------------------------------------------------------------------
       PAGE 2 — Typing + Word-Pop
