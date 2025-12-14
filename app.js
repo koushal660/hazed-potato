@@ -125,9 +125,6 @@ function startPage0() {
 ------------------------------------------------------------------ */
 function startTypingEffectPage1() {
 
-    if (page1TypingActive) return;
-    page1TypingActive = true;
-
     const lines = [
         "Wait… before you panic —",
         "I'm not confessing to anything here. 😳",
@@ -185,9 +182,9 @@ function startTypingEffectPage1() {
         }
     }
 
-    // 🔥 THIS WAS MISSING
     typeMainLines();
 }
+
 
 
 
