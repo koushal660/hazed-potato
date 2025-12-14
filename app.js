@@ -125,7 +125,7 @@ function startPage0() {
 ------------------------------------------------------------------ */
 function startTypingEffectPage1() {
 
-    if (page1TypingActive) return; // 🔒 BLOCK duplicate runs
+    if (page1TypingActive) return;
     page1TypingActive = true;
 
     const lines = [
@@ -133,6 +133,8 @@ function startTypingEffectPage1() {
         "I'm not confessing to anything here. 😳",
         "Or am I…"
     ];
+
+    const jokeText = "Just kidding, RELAX!! 😁";
 
     const el = document.getElementById("typewriter");
     const nextBtn = document.getElementById("nextBtnPage1");
@@ -144,34 +146,49 @@ function startTypingEffectPage1() {
     let lineIndex = 0;
     let charIndex = 0;
     let content = "";
+    let jokeIndex = 0;
 
-    function type() {
+    function typeMainLines() {
         if (lineIndex < lines.length) {
             if (charIndex < lines[lineIndex].length) {
                 content += lines[lineIndex][charIndex];
                 el.innerHTML = content + "<span class='cursor'></span>";
                 charIndex++;
-                setTimeout(type, 70);
+                setTimeout(typeMainLines, 70);
             } else {
                 content += "<br>";
                 el.innerHTML = content;
                 lineIndex++;
                 charIndex = 0;
-                setTimeout(type, 500);
+                setTimeout(typeMainLines, 500);
             }
         } else {
-            setTimeout(() => {
-                content += "<br><br>Just kidding, RELAX!! 😁";
-                el.innerHTML = content;
-                setTimeout(() => {
-                    nextBtn.style.display = "inline-block";
-                }, 600);
-            }, 700);
+            // Pause before joke typing
+            setTimeout(typeJokeLine, 700);
         }
     }
 
-    type();
+    function typeJokeLine() {
+        if (jokeIndex === 0) {
+            content += "<br><br>";
+        }
+
+        if (jokeIndex < jokeText.length) {
+            content += jokeText[jokeIndex];
+            el.innerHTML = content + "<span class='cursor'></span>";
+            jokeIndex++;
+            setTimeout(typeJokeLine, 65);
+        } else {
+            el.innerHTML = content; // remove cursor
+            setTimeout(() => {
+                nextBtn.style.display = "inline-block";
+            }, 400);
+        }
+    }
+
+    typeMainLines();
 }
+
 
 
 
