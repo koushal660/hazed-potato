@@ -145,57 +145,50 @@ function startTypingEffectPage1() {
 
     let lineIndex = 0;
     let charIndex = 0;
+    let content = "";
+    let jokeIndex = 0;
 
-    function typeLines() {
+    function typeMainLines() {
         if (lineIndex < lines.length) {
             if (charIndex < lines[lineIndex].length) {
-                el.innerHTML += lines[lineIndex][charIndex];
-                el.innerHTML += "<span class='cursor'></span>";
+                content += lines[lineIndex][charIndex];
+                el.innerHTML = content + "<span class='cursor'></span>";
                 charIndex++;
-
-                setTimeout(() => {
-                    el.innerHTML = el.innerHTML.replace(/<span class='cursor'><\/span>/, "");
-                    typeLines();
-                }, 70);
-
+                setTimeout(typeMainLines, 70);
             } else {
-                el.innerHTML += "<br>";
+                content += "<br>";
+                el.innerHTML = content;
                 lineIndex++;
                 charIndex = 0;
-                setTimeout(typeLines, 500);
+                setTimeout(typeMainLines, 500);
             }
         } else {
-            setTimeout(typeJoke, 700);
+            setTimeout(typeJokeLine, 700);
         }
     }
 
-    function typeJoke() {
-        el.innerHTML += "<br><br><span id='joke'></span>";
-        const jokeEl = document.getElementById("joke");
+    function typeJokeLine() {
+        if (jokeIndex < jokeText.length) {
+            el.innerHTML =
+                content +
+                "<br><br>" +
+                jokeText.substring(0, jokeIndex + 1) +
+                "<span class='cursor'></span>";
 
-        let i = 0;
-        function type() {
-            if (i < jokeText.length) {
-                jokeEl.textContent += jokeText[i];
-                jokeEl.innerHTML += "<span class='cursor'></span>";
-                i++;
-
-                setTimeout(() => {
-                    jokeEl.innerHTML = jokeEl.innerHTML.replace(/<span class='cursor'><\/span>/, "");
-                    type();
-                }, 70);
-
-            } else {
-                setTimeout(() => {
-                    nextBtn.style.display = "inline-block";
-                }, 400);
-            }
+            jokeIndex++;
+            setTimeout(typeJokeLine, 70);
+        } else {
+            el.innerHTML = content + "<br><br>" + jokeText;
+            setTimeout(() => {
+                nextBtn.style.display = "inline-block";
+            }, 400);
         }
-        type();
     }
 
-    typeLines();
+    // 🔥 THIS WAS MISSING
+    typeMainLines();
 }
+
 
 
 
