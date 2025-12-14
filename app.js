@@ -170,28 +170,28 @@ function startTypingEffectPage1() {
 
     function typeJokeLine() {
         if (jokeIndex === 0) {
-            content += "<br><br>";
+            el.innerHTML = content + "<br><br>";
         }
-
+    
         if (jokeIndex < jokeText.length) {
-            content += jokeText[jokeIndex];
-            el.innerHTML = content + "<span class='cursor'></span>";
+            el.innerHTML =
+                content +
+                "<br><br>" +
+                jokeText.substring(0, jokeIndex + 1) +
+                "<span class='cursor'></span>";
+    
             jokeIndex++;
-            setTimeout(typeJokeLine, 65);
+            setTimeout(typeJokeLine, 70); // same speed as main text
         } else {
-            el.innerHTML = content; // remove cursor
+            // Final clean text (remove cursor)
+            el.innerHTML = content + "<br><br>" + jokeText;
+    
             setTimeout(() => {
                 nextBtn.style.display = "inline-block";
             }, 400);
         }
     }
-
-    typeMainLines();
 }
-
-
-
-
 
 
 /* ------------------------------------------------------------------
