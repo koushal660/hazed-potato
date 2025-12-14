@@ -1,4 +1,5 @@
 /* PAGE SYSTEM */
+let page1TypingActive = false;
 let currentPage = 0; // Start from Page 0
 function updateProgressIndicator() {
     const indicator = document.getElementById("progressIndicator");
@@ -48,6 +49,8 @@ function showPage(num) {
 
 function goToPage(num) {
     currentPage = num;
+    if (num !== 1) page1TypingActive = false;
+
 
     hideAllPages();  // hide all pages first
 
@@ -121,6 +124,10 @@ function startPage0() {
       PAGE 1 — Multi-line Typing (with pause + joke)
 ------------------------------------------------------------------ */
 function startTypingEffectPage1() {
+
+    if (page1TypingActive) return; // 🔒 BLOCK duplicate runs
+    page1TypingActive = true;
+
     const lines = [
         "Wait… before you panic —",
         "I'm not confessing to anything here. 😳",
@@ -134,40 +141,39 @@ function startTypingEffectPage1() {
     el.innerHTML = "";
     nextBtn.style.display = "none";
 
-    let line = 0;
-    let char = 0;
-    let output = "";
+    let lineIndex = 0;
+    let charIndex = 0;
+    let content = "";
 
     function type() {
-        if (line < lines.length) {
-            if (char < lines[line].length) {
-                el.innerHTML = output + lines[line].slice(0, char + 1) + "<span class='cursor'></span>";
-                char++;
+        if (lineIndex < lines.length) {
+            if (charIndex < lines[lineIndex].length) {
+                content += lines[lineIndex][charIndex];
+                el.innerHTML = content + "<span class='cursor'></span>";
+                charIndex++;
                 setTimeout(type, 70);
             } else {
-                output += lines[line] + "<br>";
-                line++;
-                char = 0;
+                content += "<br>";
+                el.innerHTML = content;
+                lineIndex++;
+                charIndex = 0;
                 setTimeout(type, 500);
             }
         } else {
-            // remove cursor
-            el.innerHTML = output;
-
-            // pause → joke
             setTimeout(() => {
-                el.innerHTML += "<br>Just kidding, RELAX!! 😄";
-
+                content += "<br><br>Just kidding, RELAX!! 😁";
+                el.innerHTML = content;
                 setTimeout(() => {
                     nextBtn.style.display = "inline-block";
                 }, 600);
-
             }, 700);
         }
     }
 
     type();
 }
+
+
 
 
 
